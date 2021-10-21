@@ -10,7 +10,7 @@ import java.util.List;
 import com.example.todoapp.HibernateUtil;
 
 @WebServlet("/")
-public class AddItem extends HttpServlet {
+public class ShowItems extends HttpServlet {
 
     private HibernateUtil hibernateUtil;
 
@@ -75,24 +75,5 @@ public class AddItem extends HttpServlet {
         response.sendRedirect("list");
     }
 
-    private void addItem(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-        HibernateUtil hib = new HibernateUtil();
-        ToDo item = new ToDo();
 
-        //item.setId(Integer.parseInt(request.getParameter("id")));
-        item.setItem(request.getParameter("item"));
-
-        System.out.println(item.getItem());
-
-        if(hib.createItem(item))
-        {
-            request.setAttribute("msg","Item has been added!");
-        }else
-        {
-            request.setAttribute("msg", "Could not add item");
-        }
-        request.getRequestDispatcher("/AddItem.jsp").forward(request, response);
-
-
-    }
 }
